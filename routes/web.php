@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 
 Route::view('/chirps', 'chirps.index')->name('chirp.index');
+Route::post('/chirps', function () {
+
+    $message = request('message');
+})->name('chirp.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
