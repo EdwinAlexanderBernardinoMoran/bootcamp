@@ -28,6 +28,7 @@ Route::post('/chirps', function () {
         'user_id' => auth()->id()
     ]);
 
+    session()->flash('status', 'Chirp created successfully!');
     return to_route('chirp.index');
 })->name('chirp.store');
 
