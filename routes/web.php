@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Chirp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,12 @@ Route::view('/chirps', 'chirps.index')->name('chirp.index');
 Route::post('/chirps', function () {
 
     $message = request('message');
+    Chirp::create([
+        'message' => $message,
+        'user_id' => auth()->id()
+    ]);
+
+    return to_route('chirp.index');
 })->name('chirp.store');
 
 Route::get('/dashboard', function () {
